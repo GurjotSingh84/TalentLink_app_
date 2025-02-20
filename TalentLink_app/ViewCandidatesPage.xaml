@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.ViewCandidatesPage"
+             Title="Candidates for Job">
+
+    <!-- Background Gradient (Same as Previous Pages) -->
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#D8B4FE" Offset="0.0"/>
+            <GradientStop Color="#FDE68A" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+
+            <!-- Page Title -->
+            <Label Text="Candidates Applied" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   TextColor="#1E293B"
+                   HorizontalOptions="Center"/>
+
+            <!-- Candidates List -->
+            <CollectionView ItemsSource="{Binding Candidates}" 
+                            SelectionMode="Single" 
+                            SelectionChanged="OnCandidateSelected">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Candidate Card -->
+                        <Frame Padding="15" 
+                               Margin="10,5" 
+                               BackgroundColor="White"
+                               BorderColor="#E0E0E0"
+                               CornerRadius="15"
+                               HasShadow="True">
+
+                            <Grid ColumnDefinitions="60, *, Auto" RowDefinitions="Auto, Auto">
+
+                                <!-- Profile Icon -->
+                                <Image Source="profile_placeholder.png" 
+                                       WidthRequest="50"
+                                       HeightRequest="50"
+                                       Aspect="AspectFill"
+                                       Margin="0,0,10,0"
+                                       Grid.Column="0"
+                                       Grid.RowSpan="2"
+                                       VerticalOptions="Center"/>
+
+                                <!-- Candidate Name -->
+                                <Label Text="{Binding Name}" 
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#1E293B"
+                                       Grid.Column="1"
+                                       Grid.Row="0"/>
+
+                                <!-- Candidate Email -->
+                                <Label Text="{Binding Email}" 
+                                       FontSize="14"
+                                       TextColor="#6B7280"
+                                       Grid.Column="1"
+                                       Grid.Row="1"/>
+
+                                
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- No Candidates Message -->
+            <Label Text="No candidates have applied yet." 
+                   FontSize="16" 
+                   TextColor="#6B7280" 
+                   HorizontalOptions="Center" 
+                   IsVisible="{Binding Candidates.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

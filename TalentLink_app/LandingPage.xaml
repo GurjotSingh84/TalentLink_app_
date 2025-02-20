@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.LandingPage"
+             BackgroundColor="White">
+
+    <VerticalStackLayout Padding="30" VerticalOptions="Center" Spacing="20">
+
+        <!-- App Logo -->
+        <Image Source= "C:\Users\harpr\source\repos\TalentLink_app (2)\TalentLink_app\images\Logo.png" 
+               WidthRequest="150" 
+               HeightRequest="150" 
+               HorizontalOptions="Center" />
+
+        <!-- Welcome Message -->
+        <Label Text="Welcome to TalentLink"
+               FontSize="30"
+               FontAttributes="Bold"
+               TextColor="#007AFF"
+               HorizontalOptions="Center" />
+
+        <!-- Login Button -->
+        <Button Text="Login"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                HeightRequest="50"
+                Clicked="OnLoginClicked" />
+
+        <!-- Signup Button -->
+        <Button Text="Sign Up"
+                BackgroundColor="White"
+                TextColor="#007AFF"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                HeightRequest="50"
+                BorderColor="#007AFF"
+                BorderWidth="2"
+                Clicked="OnSignUpClicked" />
+
+    </VerticalStackLayout>
+
+</ContentPage>

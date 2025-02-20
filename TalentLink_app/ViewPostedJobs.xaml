@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.ViewPostedJobs"
+             Title="Posted Jobs"
+             BackgroundColor="#F8FAFC">
+
+    <!-- Main Layout -->
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Page Title -->
+            <RowDefinition Height="*"/>
+            <!-- Scrollable CollectionView -->
+        </Grid.RowDefinitions>
+
+        <!-- Page Title -->
+        <Label Text="📌 Your Posted Jobs" FontSize="26" FontAttributes="Bold" 
+               HorizontalOptions="Center" TextColor="#1E293B" Padding="10"
+               Grid.Row="0"/>
+
+        <!-- Scrollable Job Listings -->
+        <CollectionView ItemsSource="{Binding Jobs}" 
+                        SelectionMode="Single"
+                        SelectionChanged="OnJobSelected"
+                        Grid.Row="1"
+                        VerticalOptions="FillAndExpand"
+                        HeightRequest="500">
+            <!-- Adjust height if needed -->
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="15" Padding="15" Margin="10"
+                           BackgroundColor="White" HasShadow="True">
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <!-- Job Title & Edit Button -->
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Label Text="{Binding JobTitle}" FontSize="20" FontAttributes="Bold"
+                                       TextColor="#0F172A"/>
+                                <Button Text="✏ Edit" Clicked="OnEditJob" BackgroundColor="Transparent"
+                                        TextColor="#007AFF" Padding="5" FontSize="14"/>
+                            </Grid>
+
+                            <!-- Job Details -->
+                            <VerticalStackLayout Padding="5">
+                                <HorizontalStackLayout>
+                                    <Label Text="👤 Recruiter: " FontSize="14" FontAttributes="Bold" 
+                                           TextColor="Gray"/>
+                                    <Label Text="{Binding RecruiterId}" FontSize="14" TextColor="#007AFF"/>
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout>
+                                    <Label Text="📌 Job ID: " FontSize="14" FontAttributes="Bold" TextColor="Gray"/>
+                                    <Label Text="{Binding JobId}" FontSize="14" TextColor="#007AFF"/>
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout>
+                                    <Label Text="💰 Pay: " FontSize="14" FontAttributes="Bold" TextColor="Gray"/>
+                                    <Label Text="{Binding PayRate}" FontSize="14" TextColor="Green"/>
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout>
+                                    <Label Text="📍 Location: " FontSize="14" FontAttributes="Bold" TextColor="Gray"/>
+                                    <Label Text="{Binding Location}" FontSize="14" TextColor="Black"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+
+                            <!-- Job Description -->
+                            <Frame BackgroundColor="#F1F5F9" Padding="8" CornerRadius="10">
+                                <Label Text="{Binding JobDescription}" FontSize="14" 
+                                       TextColor="Black" MaxLines="3" LineBreakMode="TailTruncation"/>
+                            </Frame>
+
+                            <!-- Action Buttons -->
+                            <HorizontalStackLayout Spacing="10" HorizontalOptions="End">
+                                <Button Text="🗑 Delete" Clicked="OnDeleteJob" BackgroundColor="Red"
+                                        TextColor="White" Padding="5,2" CornerRadius="5"/>
+                              
+                            </HorizontalStackLayout>
+
+                        </VerticalStackLayout>
+
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

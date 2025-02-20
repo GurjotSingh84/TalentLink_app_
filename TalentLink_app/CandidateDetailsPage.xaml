@@ -1,0 +1,21 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.CandidateDetailsPage"
+             Title="Candidate Details">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            <Label x:Name="CandidateIdLabel" FontSize="18" FontAttributes="Bold"/>
+            <Label x:Name="NameLabel" FontSize="18"/>
+            <Label x:Name="EmailLabel" FontSize="18"/>
+            <Label x:Name="PhoneLabel" FontSize="18"/>
+            <Label x:Name="ExperienceLabel" FontSize="18"/>
+            <Label x:Name="ExpectedPayLabel" FontSize="18"/>
+            <Label x:Name="AvailabilityLabel" FontSize="18"/>
+            <Label x:Name="QualificationsLabel" FontSize="18"/>
+            <Label x:Name="StatusLabel" FontSize="18" FontAttributes="Italic"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+
+

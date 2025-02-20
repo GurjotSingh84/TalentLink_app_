@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.CandidateHomePage"
+             Title="Candidate Dashboard">
+
+    <!-- Gradient Background -->
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#D9E2FF" Offset="0.0"/>
+            <GradientStop Color="#F0F4FF" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Header Section -->
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Title Label -->
+                <Label Text="Candidate Dashboard"
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       TextColor="#1E293B"
+                       HorizontalOptions="Start"
+                       Margin="0,10"/>
+            </Grid>
+
+            <!-- Dashboard CollectionView -->
+            <CollectionView ItemsSource="{Binding DashboardItems}" 
+                            SelectionMode="Single" 
+                            SelectionChanged="OnItemSelected">
+
+                <CollectionView.ItemsLayout>
+                    <!-- Grid Layout with 2 columns and spacing -->
+                    <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="15" HorizontalItemSpacing="15"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="20"
+                               Margin="8"
+                               Padding="15"
+                               HasShadow="True"
+                               BackgroundColor="White"
+                               BorderColor="#B0B0B0"
+                               HeightRequest="200">
+
+                            <!-- Border and content -->
+                            <Border Stroke="Transparent" StrokeThickness="0" Padding="10" BackgroundColor="White">
+
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+
+                                    <!-- Circular Icon Frame with Background Color -->
+                                    <Frame CornerRadius="40"
+                                           Padding="15"
+                                           HasShadow="True"
+                                           BackgroundColor="#F0F4FF"
+                                           HorizontalOptions="Center">
+                                        <Image Source="{Binding Icon}" 
+                                               HeightRequest="50" 
+                                               WidthRequest="50"
+                                               HorizontalOptions="Center"/>
+                                    </Frame>
+
+                                    <!-- Title Text -->
+                                    <Label Text="{Binding Title}" 
+                                           FontSize="18" 
+                                           FontAttributes="Bold" 
+                                           TextColor="#334155"
+                                           HorizontalOptions="Center"/>
+
+                                    <!-- Subtitle Text -->
+                                    <Label Text="{Binding Subtitle}" 
+                                           FontSize="14" 
+                                           TextColor="#64748B"
+                                           HorizontalOptions="Center"/>
+
+                                </VerticalStackLayout>
+
+                            </Border>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

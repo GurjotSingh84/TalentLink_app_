@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.SelectJobForCandidatesPage"
+             Title="Select Job">
+
+    <!-- Background Gradient (Same as Previous Pages) -->
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#D8B4FE" Offset="0.0"/>
+            <GradientStop Color="#FDE68A" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+
+            <!-- Page Title -->
+            <Label Text="Select a Job to View Candidates" 
+                   FontSize="24" 
+                   FontAttributes="Bold"
+                   TextColor="#1E293B"
+                   HorizontalOptions="Center"/>
+
+            <!-- Job List -->
+            <CollectionView ItemsSource="{Binding Jobs}" 
+                            SelectionMode="Single" 
+                            SelectionChanged="OnJobSelected">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="1" VerticalItemSpacing="15"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Job Card -->
+                        <Frame Padding="15" 
+                               Margin="5,5,5,0" 
+                               BackgroundColor="White"
+                               BorderColor="#E0E0E0"
+                               CornerRadius="15"
+                               HasShadow="True">
+
+                            <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto, Auto">
+
+                                <!-- Job Title -->
+                                <Label Text="{Binding JobTitle}" 
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="#1E293B"
+                                       Grid.Row="0"/>
+
+                                <!-- Job ID -->
+                                <Label Text="{Binding JobId}" 
+                                       FontSize="14"
+                                       FontAttributes="Italic"
+                                       TextColor="#6B7280"
+                                       Grid.Row="1"/>
+
+                                <!-- Job Location -->
+                                <Label Text="{Binding Location}" 
+                                       FontSize="16"
+                                       TextColor="#64748B"
+                                       Grid.Row="2"/>
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

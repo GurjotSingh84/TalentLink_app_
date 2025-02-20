@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.SignupPage"
+             Title="SignupPage">
+    
+
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#D8B4FE" Offset="0.0"/>
+            <GradientStop Color="#FDE68A" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+
+    <VerticalStackLayout Padding="30" VerticalOptions="Center" Spacing="15">
+
+        <!-- Title -->
+        <Label Text="Welcome !"
+               FontSize="30"
+               FontAttributes="Bold"
+               TextColor="Black"
+               HorizontalOptions="Center" />
+
+        <!-- Signup Card -->
+        <Frame BackgroundColor="White"
+               CornerRadius="20"
+               Padding="20"
+               HasShadow="True">
+            <VerticalStackLayout Spacing="10">
+
+                <!-- Email Entry Field -->
+                <Frame BackgroundColor="#F0F0F0" CornerRadius="10" Padding="5" HasShadow="False">
+                    <HorizontalStackLayout>
+                        <Image Source="email_icon.png" WidthRequest="20" HeightRequest="20" Margin="5"/>
+                        <Entry x:Name="EmailEntry"
+                               Placeholder="Enter Email"
+                               Keyboard="Email"
+                               TextColor="Black"
+                               PlaceholderColor="Gray"
+                               BackgroundColor="Transparent"
+                               WidthRequest="250"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <!-- Password Entry Field -->
+                <Frame BackgroundColor="#F0F0F0" CornerRadius="10" Padding="5" HasShadow="False">
+                    <HorizontalStackLayout>
+                        <Image Source="lock_icon.png" WidthRequest="20" HeightRequest="20" Margin="5"/>
+                        <Entry x:Name="PasswordEntry"
+                               Placeholder="Enter Password"
+                               IsPassword="True"
+                               TextColor="Black"
+                               PlaceholderColor="Gray"
+                               BackgroundColor="Transparent"
+                               WidthRequest="250"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <!-- Role Selection -->
+                <Picker x:Name="RolePicker"
+                        Title="Select Role"
+                        TextColor="Black">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Candidate</x:String>
+                            <x:String>Recruiter</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <!-- Signup Button -->
+                <Button Text="Sign Up"
+                        BackgroundColor="#007AFF"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Clicked="OnSignUpClicked" />
+
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Login Option -->
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="Already have an account?" TextColor="Black" />
+            <Label Text=" Log in " TextColor="Blue" FontAttributes="Bold">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLoginButtonClicked"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+
+</ContentPage>
+
+

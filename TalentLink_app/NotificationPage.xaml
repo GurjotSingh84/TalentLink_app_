@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.NotificationPage"
+             Title="NotificationPage"
+             BackgroundColor="white">
+    <StackLayout Padding="10">
+        <Label Text="Notifications" FontSize="24" TextColor="Black" />
+        <CollectionView x:Name="NotificationsList" ItemsSource="{Binding Notifications}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5">
+                        <Label Text="{Binding Message}" TextColor="white" />
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

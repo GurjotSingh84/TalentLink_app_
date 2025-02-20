@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.ApplyPage"
+             Title="Apply for Job">
+
+    <!-- Gradient Background -->
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#D8B4FE" Offset="0.0"/>
+            <GradientStop Color="#FDE68A" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView Padding="20">
+        <StackLayout Spacing="20">
+
+            <!-- Header Section -->
+            <Label Text="Apply for Job" 
+                   FontSize="32" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="#1E293B" />
+
+            <!-- Application Form Card -->
+            <Frame BackgroundColor="White" 
+                   CornerRadius="20" 
+                   Padding="20" 
+                   HasShadow="True">
+
+                <StackLayout Spacing="15">
+
+                    <!-- Job ID Entry -->
+                    
+
+                    <!-- Full Name Entry -->
+                    <Frame Padding="10" BackgroundColor="#F9F9F9" CornerRadius="10" HasShadow="False">
+                        <Entry x:Name="NameEntry" Placeholder="Full Name" TextColor="#333"/>
+                    </Frame>
+
+                    <!-- Email Entry -->
+                    <Frame Padding="10" BackgroundColor="#F9F9F9" CornerRadius="10" HasShadow="False">
+                        <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" TextColor="#333"/>
+                    </Frame>
+
+                    <!-- Phone Number Entry -->
+                    <Frame Padding="10" BackgroundColor="#F9F9F9" CornerRadius="10" HasShadow="False">
+                        <Entry x:Name="PhoneEntry" Placeholder="Phone Number" Keyboard="Telephone" TextColor="#333"/>
+                    </Frame>
+
+                    <!-- Experience Entry -->
+                    <Frame Padding="10" BackgroundColor="#F9F9F9" CornerRadius="10" HasShadow="False">
+                        <Entry x:Name="ExperienceEntry" Placeholder="Experience (e.g., 5 years)" TextColor="#333"/>
+                    </Frame>
+
+                    <!-- Expected Pay Entry -->
+                    <Frame Padding="10" BackgroundColor="#F9F9F9" CornerRadius="10" HasShadow="False">
+                        <Entry x:Name="ExpectedPayEntry" Placeholder="Expected Pay (e.g., $50,000/year)" TextColor="#333"/>
+                    </Frame>
+
+                    <!-- Availability Entry -->
+                    <Frame Padding="10" BackgroundColor="#F9F9F9" CornerRadius="10" HasShadow="False">
+                        <Entry x:Name="AvailabilityEntry" Placeholder="Availability (e.g., Immediate)" TextColor="#333"/>
+                    </Frame>
+
+                    <!-- Qualifications Entry -->
+                    <Frame Padding="10" BackgroundColor="#F9F9F9" CornerRadius="10" HasShadow="False">
+                        <Entry x:Name="QualificationsEntry" Placeholder="Qualifications (e.g., BSc Computer Science)" TextColor="#333"/>
+                    </Frame>
+
+                    <!-- Upload Resume Button -->
+                    <Button Text="Upload Resume" 
+                            BackgroundColor="#007BFF" 
+                            TextColor="White"
+                            CornerRadius="20" 
+                            Clicked="OnResumeUploadClicked"/>
+
+                    <!-- Resume Status Label -->
+                    <Label x:Name="ResumeStatusLabel" 
+                           Text="No file selected" 
+                           FontSize="14" 
+                           TextColor="Gray" 
+                           HorizontalOptions="Center"/>
+
+                    <!-- Submit Application Button -->
+                    <Button Text="Submit Application" 
+                            BackgroundColor="#007BFF" 
+                            TextColor="White" 
+                            CornerRadius="20" 
+                            HeightRequest="50" 
+                            Clicked="OnSubmitApplicationClicked"/>
+
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

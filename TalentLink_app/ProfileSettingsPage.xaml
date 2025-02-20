@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.ProfileSettingsPage"
+             Title="Profile Settings">
+
+    <!-- Background Gradient  -->
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#D8B4FE" Offset="0.0"/>
+            <GradientStop Color="#FDE68A" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <StackLayout Padding="25" Spacing="20">
+
+            <!-- Profile Picture Section -->
+            
+            <Frame BackgroundColor="White"
+                      Padding="5"
+                     CornerRadius="60"
+                     WidthRequest="130"
+                      HeightRequest="130"
+                       HasShadow="True"
+                         HorizontalOptions="Center">
+                <Image x:Name="ProfileImage"
+                          HeightRequest="120"
+                           WidthRequest="120"
+                            Aspect="AspectFill" />
+            </Frame>
+
+            <Button Text="Upload Profile Picture" 
+                    Clicked="OnUploadProfilePictureClicked" 
+                    BackgroundColor="#4F46E5" 
+                    TextColor="White" 
+                    CornerRadius="20"
+                    HeightRequest="45"/>
+
+            <!-- Profile Form Fields -->
+            <Frame BackgroundColor="White" Padding="15" CornerRadius="15" HasShadow="True">
+                <StackLayout Spacing="12">
+                    <Entry x:Name="NameEntry" Placeholder="Full Name" FontSize="16"/>
+
+                    <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" IsEnabled="False"
+                           FontSize="16" TextColor="Gray"/>
+
+                    <Entry x:Name="PhoneEntry" Placeholder="Phone Number" Keyboard="Telephone" FontSize="16"/>
+
+                    <Entry x:Name="QualificationEntry" Placeholder="Highest Qualification" FontSize="16"/>
+
+                    <Editor x:Name="SkillsEditor" Placeholder="Skills" HeightRequest="80" FontSize="16"/>
+
+                    <Entry x:Name="ExperienceEntry" Placeholder="Years of Experience" Keyboard="Numeric" FontSize="16"/>
+
+                    <Editor x:Name="ExpertiseEditor" Placeholder="Expertise" HeightRequest="80" FontSize="16"/>
+
+                    <Entry x:Name="LocationEntry" Placeholder="Current Location" FontSize="16"/>
+
+                    <Editor x:Name="JobPreferencesEditor" Placeholder="Job Preferences" HeightRequest="80" FontSize="16"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Save Button -->
+            <Button Text="Save Profile" 
+                    Clicked="OnSaveClicked" 
+                    BackgroundColor="#10B981" 
+                    TextColor="White" 
+                    FontAttributes="Bold"
+                    CornerRadius="25" 
+                    HeightRequest="50"/>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

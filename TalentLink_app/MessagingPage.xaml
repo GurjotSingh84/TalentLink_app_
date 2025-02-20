@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.MessagingPage"
+             Title="Chat"
+             BackgroundColor="White">
+
+    <StackLayout Padding="10">
+
+        <!-- Chat Header -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label Text="Chat with: " FontSize="Medium" FontAttributes="Bold" TextColor="Blue"/>
+            <Label Text="{Binding ReceiverId}" FontSize="Medium" TextColor="Blue"/>
+        </StackLayout>
+
+        <!-- Messages List -->
+        <ListView ItemsSource="{Binding Messages}" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Padding="10" CornerRadius="10"
+                               BackgroundColor="{Binding IsSender, Converter={StaticResource MessageColorConverter}}">
+                            <StackLayout>
+
+                                <Label Text="{Binding SenderId}" FontAttributes="Bold" TextColor="Gray"/>
+                                <Label Text="{Binding Message}" FontSize="Medium" TextColor="Gray" />
+                                <Label Text="{Binding Timestamp, StringFormat='{0:hh:mm tt}'}" FontSize="Small" TextColor="Gray"/>
+
+                                <!-- Delete Message Button -->
+                                <Button Text="Delete" IsVisible="{Binding IsSender}" Padding="10" CornerRadius="10"
+                                        BackgroundColor="Red" TextColor="White" 
+                                        Clicked="OnDeleteMessage_Clicked"/>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Message Input -->
+        <StackLayout Orientation="Horizontal">
+            <Frame BackgroundColor="#F1F1F1" Padding="5" CornerRadius="20" VerticalOptions="Center">
+                <Entry x:Name="MessageEntry" Placeholder="Type a message..." HorizontalOptions="FillAndExpand"/>
+            </Frame>
+            <Button Text="Send" Clicked="SendMessage_Clicked"/>
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>

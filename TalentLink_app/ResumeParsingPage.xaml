@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.ResumeParsingPage"
+             Title="ResumeParsingPage"
+             BackgroundColor="White">
+    <StackLayout Padding="20" Spacing="15">
+        <Label Text="Upload Your Resume" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+        <Button Text="Select Resume File" Clicked="OnSelectResumeClicked" BackgroundColor="LightBlue" TextColor="Black"/>
+        <Label x:Name="ResumeText" Text="Resume details will appear here..." FontSize="14"/>
+    </StackLayout>
+
+</ContentPage>

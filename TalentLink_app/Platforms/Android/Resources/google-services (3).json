@@ -1,0 +1,50 @@
+{
+  "project_info": {
+    "project_number": "569270350103",
+    "project_id": "talentlink-c902f",
+    "storage_bucket": "talentlink-c902f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569270350103:android:69058527199497412a8752",
+        "android_client_info": {
+          "package_name": "com.company.TalentLink"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK1AQyx8dCMAuwEcCOyjTYvdfkIDfNirw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    
+
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569270350103:android:52aee18ab75f1b182a8752",
+        "android_client_info": {
+          "package_name": "com.company.TalentLinkapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK1AQyx8dCMAuwEcCOyjTYvdfkIDfNirw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

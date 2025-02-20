@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.RecruiterHomePage"
+             BackgroundColor="White">
+
+    <Grid>
+        <Image Source="https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-recruitment-looking-for-talent-recruitment-season-banner-image_171916.jpg" Aspect="AspectFill" Opacity="0.3"/>
+        <StackLayout Padding="20" VerticalOptions="Start">
+            <Label Text="TalentLink App"
+                   FontSize="30"
+                   TextColor="#3498db"  FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+            <Label Text="Recruiter Dashboard"
+                   FontSize="24"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" 
+                  HorizontalOptions="Center"  RowSpacing="20" ColumnSpacing="20">
+                <Button Text="Post a Job"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        BorderColor="#3498db"  BorderWidth="2"
+                        CornerRadius="10"  FontSize="16"
+                        Grid.Row="0" Grid.Column="0"
+                        Clicked="GoToPostJob"/>
+
+                <Button Text="View Posted Jobs"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        BorderColor="#3498db"
+                        BorderWidth="2"
+                        CornerRadius="10"
+                        FontSize="16"
+                        Grid.Row="0" Grid.Column="1"
+                        Clicked="GoToPostedJobs"/>
+
+                <Button Text="View Candidates"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        BorderColor="#3498db"
+                        BorderWidth="2"
+                        CornerRadius="10"
+                        FontSize="16"
+                        Grid.Row="1" Grid.Column="0"
+                        Clicked="GoToCandidates"/>
+
+                <Button Text="Messaging"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        BorderColor="#3498db"
+                        BorderWidth="2"
+                        CornerRadius="10"
+                        FontSize="16"
+                        Grid.Row="1" Grid.Column="1"
+                        Clicked="GoToMessaging"/>
+
+            </Grid>
+
+            <Button Text="Notifications"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    BorderColor="#3498db"
+                    BorderWidth="2"
+                    CornerRadius="10"
+                    FontSize="16"
+                    Margin="0,20,0,0"  HorizontalOptions="Center"
+                    Clicked="GoToNotifications"/>
+
+            <Button Text="Profile and Settings"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    BorderColor="#3498db"
+                    BorderWidth="2"
+                    CornerRadius="10"
+                    FontSize="16"
+                    Margin="0,20,0,0"
+                    HorizontalOptions="Center"
+                    Clicked="GoToProfile"/>
+
+            <Button Text="Logout"
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    CornerRadius="10"
+                    FontSize="16"
+                    Margin="0,20,0,0"
+                    HorizontalOptions="Center"
+                    Clicked="Logout"/>
+
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

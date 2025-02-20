@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.SavedJobsPage"
+             Title="Saved Jobs">
+
+    <!-- Background with Gradient -->
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#D8B4FE" Offset="0.0"/>
+            <GradientStop Color="#FDE68A" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView Padding="20">
+        <StackLayout Spacing="15">
+
+            <!-- Page Title -->
+            <Label Text="Saved Jobs" 
+                   FontSize="32" 
+                   FontAttributes="Bold" 
+                   TextColor="#1E293B" 
+                   HorizontalOptions="Center"/>
+
+            <!-- Saved Jobs List -->
+            <CollectionView x:Name="SavedJobsListView"
+                            ItemsSource="{Binding SavedJobs}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Job Card -->
+                        <Frame Padding="15"
+                               Margin="10,5"
+                               BackgroundColor="White"
+                               BorderColor="#E0E0E0"
+                               CornerRadius="15"
+                               HasShadow="True">
+
+                            <StackLayout Spacing="10">
+                                <!-- Job Title -->
+                                <Label Text="{Binding JobTitle}" 
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#334155"
+                                       HorizontalOptions="Start"/>
+
+                                <!-- Job Location -->
+                                <Label Text="{Binding Location}" 
+                                       FontSize="14"
+                                       TextColor="#64748B"
+                                       HorizontalOptions="Start"/>
+
+                                <!-- Pay Rate -->
+                                <Label Text="{Binding PayRate, StringFormat='💰 {0} per hour'}"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="#28A745"
+                                       HorizontalOptions="Start"/>
+
+                                <!-- Unsave Job Button -->
+                                <Button Text="Unsave Job"
+                                        BackgroundColor="#FF4C4C"
+                                        TextColor="White"
+                                        FontAttributes="Bold"
+                                        CornerRadius="25"
+                                        HeightRequest="40"
+                                        CommandParameter="{Binding JobId}"
+                                        Clicked="OnUnsaveJobClicked"/>
+                            </StackLayout>
+
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

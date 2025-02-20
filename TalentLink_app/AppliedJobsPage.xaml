@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.AppliedJobsPage"
+             Title="Applied Jobs">
+
+    <!-- Background Gradient -->
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#D8B4FE" Offset="0.0"/>
+            <GradientStop Color="#FDE68A" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+
+            <!-- Page Title -->
+            <Label Text="Applied Jobs" 
+                   FontSize="30" 
+                   FontAttributes="Bold" 
+                   TextColor="#1E293B" 
+                   HorizontalOptions="Center"/>
+
+            <!-- Applied Jobs List -->
+            <CollectionView ItemsSource="{Binding AppliedJobs}" 
+                            SelectionMode="Single"
+                            SelectionChanged="OnJobSelected">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="1" VerticalItemSpacing="15" HorizontalItemSpacing="15"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Job Card -->
+                        <Frame Padding="15"
+                               Margin="10,5"
+                               BackgroundColor="White"
+                               BorderColor="#E0E0E0"
+                               CornerRadius="15"
+                               HasShadow="True">
+                            <StackLayout Spacing="10">
+
+                                <!-- Job Title -->
+                                <Label Text="{Binding JobTitle}" 
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#1E293B"
+                                       HorizontalOptions="Start"/>
+
+                                <!-- Job Description -->
+                                <Label Text="{Binding Description}" 
+                                       FontSize="14"
+                                       TextColor="#6B7280"
+                                       LineBreakMode="TailTruncation"
+                                       MaxLines="2"
+                                       HorizontalOptions="Start"/>
+
+                                <!-- Job Details (Location & PayRate) -->
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Spacing="10">
+                                    <Label Text="📍" FontSize="14"/>
+                                    <Label Text="{Binding Location}" 
+                                           FontSize="14"
+                                           TextColor="#6B7280"/>
+
+                                    <Label Text="💰" FontSize="14"/>
+                                    <Label Text="{Binding PayRate, StringFormat='{0}/hr'}"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="#10B981"/>
+                                </StackLayout>
+
+                                <!-- Withdraw Button -->
+                                <Button Text="Withdraw"
+                                        BackgroundColor="#FF4C4C"
+                                        TextColor="White"
+                                        FontAttributes="Bold"
+                                        CornerRadius="20"
+                                        HeightRequest="40"
+                                        CommandParameter="{Binding JobID}"
+                                        Clicked="OnWithdrawApplication"
+                                        HorizontalOptions="Fill"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

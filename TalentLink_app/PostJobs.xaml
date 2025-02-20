@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TalentLink_app.PostJobs"
+             Title="Post a Job">
+
+    <!-- Gradient Background -->
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#D8B4FE" Offset="0.0"/>
+            <GradientStop Color="#FDE68A" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="15">
+
+            <!-- Page Title -->
+            <Label Text="Post a New Job" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   TextColor="Black"
+                   HorizontalOptions="Center" 
+                   Margin="0,10"/>
+
+            <!-- Job ID Entry -->
+          
+
+            <!-- Job Title Entry -->
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="White">
+                <Entry x:Name="JobTitleEntry" Placeholder="Enter Job Title" 
+                       FontSize="16" TextColor="Black"/>
+            </Frame>
+
+            <!-- Job Description -->
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="White">
+                <Editor x:Name="JobDescriptionEditor" Placeholder="Enter Job Description" 
+                        FontSize="16" HeightRequest="120" TextColor="Black"/>
+            </Frame>
+
+            <!-- Pay Rate Entry -->
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="White">
+                <Entry x:Name="PayRateEntry" Placeholder="Enter Pay Rate" 
+                       FontSize="16" Keyboard="Numeric" TextColor="Black"/>
+            </Frame>
+
+            <!-- Location Entry -->
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="White">
+                <Entry x:Name="LocationEntry" Placeholder="Enter Location" 
+                       FontSize="16" TextColor="Black"/>
+            </Frame>
+
+            <!-- Post Job Button -->
+            <Button Text="Post Job"
+                    Clicked="OnPostJobClicked"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="25"
+                    HeightRequest="50">
+                <Button.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#4F46E5" Offset="0.0"/>
+                        <GradientStop Color="#6366F1" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
