@@ -30,8 +30,7 @@
 
                 <StackLayout Spacing="15">
 
-                    <!-- Job ID Entry -->
-                    
+
 
                     <!-- Full Name Entry -->
                     <Frame Padding="10" BackgroundColor="#F9F9F9" CornerRadius="10" HasShadow="False">
