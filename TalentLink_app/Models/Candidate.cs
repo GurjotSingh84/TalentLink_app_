@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +19,12 @@ namespace TalentLink_app.Models
         public string JobId { get; set; }
         public string ResumeUrl { get; set; }
         public string Status { get; set; }
+        public string Skills { get; set; }
+        public string Qualification { get; set; }
+        public string Expertise { get; set; }
+        public string JobPreferences { get; set; }
+        public string Location { get; set; }
+        public string ProfilePictureUrl { get; set; }
 
     }
 }
