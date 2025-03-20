@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
 namespace TalentLink_app.Models
 {
@@ -19,9 +15,8 @@ namespace TalentLink_app.Models
         public string ExpectedPay { get; set; }
         public string Availability { get; set; }
         public string Qualifications { get; set; }
-        public DateTime AppliedDate { get; set; } 
-        public string Status { get; set; }
 
-       
+        public string Status { get; set; }
+        public DateTime AppliedDate { get; set; } = DateTime.UtcNow;
     }
 }
