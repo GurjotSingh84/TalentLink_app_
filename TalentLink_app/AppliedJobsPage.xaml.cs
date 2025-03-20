@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using Microsoft.Maui.Controls;
 using TalentLink_app.Models;
@@ -49,7 +49,7 @@ namespace TalentLink_app
             var selectedJob = e.CurrentSelection[0] as Job;
             if (selectedJob == null) return;
 
-            await Navigation.PushAsync(new JobDetailsPage(selectedJob));
+            await Navigation.PushAsync(new ApplicationStatusPage());
             ((CollectionView)sender).SelectedItem = null;
         }
 
