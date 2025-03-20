@@ -1,4 +1,3 @@
-using Microsoft.Maui.Controls;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -34,7 +33,7 @@ namespace TalentLink_app
                 return;
             }
 
-            var user = await firebaseClient.Child("users").Child(userId).OnceSingleAsync<UserProfile>();
+            var user = await firebaseClient.Child("Candidates").Child(userId).OnceSingleAsync<UserProfile>();
 
             if (user != null)
             {
@@ -78,22 +77,24 @@ namespace TalentLink_app
                 ProfilePictureUrl = profilePictureUrl
             };
 
-            await firebaseClient.Child("users").Child(userId).PutAsync(profile);
+            await firebaseClient.Child("Candidates").Child(userId).PutAsync(profile);
+            await firebaseClient.Child("Candidates").Child(userId).Child("CandidateID").PutAsync(userId);
             await DisplayAlert("Success", "Profile updated successfully!", "OK");
         }
 
         private async void OnUploadProfilePictureClicked(object sender, EventArgs e)
         {
-            var result = await MediaPicker.PickPhotoAsync();
+            // Example: Open File Picker to Select Image
+            var result = await FilePicker.PickAsync(new PickOptions
+            {
+                PickerTitle = "Select Profile Picture",
+                FileTypes = FilePickerFileType.Images
+            });
+
             if (result != null)
             {
-                var fileStream = await result.OpenReadAsync();
-                var storagePath = $"profile_pictures/{userId}/{Path.GetFileName(result.FullPath)}";
-
-                var uploadTask = await firebaseStorage.Child(storagePath).PutAsync(fileStream);
-                profilePictureUrl = await firebaseStorage.Child(storagePath).GetDownloadUrlAsync();
-
-                ProfileImage.Source = profilePictureUrl;
+                // Update profile image source
+                ProfileImage.Source = ImageSource.FromFile(result.FullPath);
             }
         }
     }
