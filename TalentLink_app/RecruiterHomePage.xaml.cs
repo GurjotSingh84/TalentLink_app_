@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using Microsoft.Maui.Controls;
 using TalentLink_app.Models;
@@ -36,13 +36,14 @@ namespace TalentLink_app
                 await Navigation.PushAsync(new MessagingPage());
             }
         }
-
-
-
-        private async void GoToNotifications(object sender, EventArgs e)
+        private async void GoToSearchCandidates(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NotificationPage());
+            await Navigation.PushAsync(new SearchCandidatesByProfilePage());
         }
+
+
+
+
 
         private async void GoToProfile(object sender, EventArgs e)
         {
