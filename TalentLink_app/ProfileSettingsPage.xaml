@@ -4,7 +4,7 @@
              x:Class="TalentLink_app.ProfileSettingsPage"
              Title="Profile Settings">
 
-    <!-- Background Gradient  -->
+    <!-- Background Gradient -->
     <ContentPage.Background>
         <LinearGradientBrush>
             <GradientStop Color="#D8B4FE" Offset="0.0"/>
@@ -16,18 +16,18 @@
         <StackLayout Padding="25" Spacing="20">
 
             <!-- Profile Picture Section -->
-            
+            <!-- Profile Picture Section -->
             <Frame BackgroundColor="White"
-                      Padding="5"
-                     CornerRadius="60"
-                     WidthRequest="130"
-                      HeightRequest="130"
-                       HasShadow="True"
-                         HorizontalOptions="Center">
+                   Padding="5"
+                   CornerRadius="60"
+                   WidthRequest="130"
+                   HeightRequest="130"
+                   HasShadow="True"
+                   HorizontalOptions="Center">
                 <Image x:Name="ProfileImage"
-                          HeightRequest="120"
-                           WidthRequest="120"
-                            Aspect="AspectFill" />
+                       HeightRequest="120"
+                       WidthRequest="120"
+                       Aspect="AspectFill" />
             </Frame>
 
             <Button Text="Upload Profile Picture" 
@@ -41,34 +41,20 @@
             <Frame BackgroundColor="White" Padding="15" CornerRadius="15" HasShadow="True">
                 <StackLayout Spacing="12">
                     <Entry x:Name="NameEntry" Placeholder="Full Name" FontSize="16"/>
-
-                    <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" IsEnabled="False"
-                           FontSize="16" TextColor="Gray"/>
-
+                    <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" IsEnabled="False" FontSize="16" TextColor="Gray"/>
                     <Entry x:Name="PhoneEntry" Placeholder="Phone Number" Keyboard="Telephone" FontSize="16"/>
-
                     <Entry x:Name="QualificationEntry" Placeholder="Highest Qualification" FontSize="16"/>
-
-                    <Editor x:Name="SkillsEditor" Placeholder="Skills" HeightRequest="80" FontSize="16"/>
-
+                    <Editor x:Name="SkillsEditor" Placeholder="Skills (e.g., Java, React, AI)" HeightRequest="80" FontSize="16"/>
                     <Entry x:Name="ExperienceEntry" Placeholder="Years of Experience" Keyboard="Numeric" FontSize="16"/>
-
-                    <Editor x:Name="ExpertiseEditor" Placeholder="Expertise" HeightRequest="80" FontSize="16"/>
-
+                    <Editor x:Name="ExpertiseEditor" Placeholder="Expertise (e.g., Machine Learning, UI/UX)" HeightRequest="80" FontSize="16"/>
                     <Entry x:Name="LocationEntry" Placeholder="Current Location" FontSize="16"/>
-
                     <Editor x:Name="JobPreferencesEditor" Placeholder="Job Preferences" HeightRequest="80" FontSize="16"/>
                 </StackLayout>
             </Frame>
 
             <!-- Save Button -->
-            <Button Text="Save Profile" 
-                    Clicked="OnSaveClicked" 
-                    BackgroundColor="#10B981" 
-                    TextColor="White" 
-                    FontAttributes="Bold"
-                    CornerRadius="25" 
-                    HeightRequest="50"/>
+            <Button Text="Save Profile" Clicked="OnSaveClicked" BackgroundColor="#10B981"
+                    TextColor="White" FontAttributes="Bold" CornerRadius="25" HeightRequest="50"/>
 
         </StackLayout>
     </ScrollView>
