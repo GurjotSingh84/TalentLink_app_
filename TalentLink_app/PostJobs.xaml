@@ -23,9 +23,6 @@
                    HorizontalOptions="Center" 
                    Margin="0,10"/>
 
-            <!-- Job ID Entry -->
-          
-
             <!-- Job Title Entry -->
             <Frame CornerRadius="10" Padding="10" BackgroundColor="White">
                 <Entry x:Name="JobTitleEntry" Placeholder="Enter Job Title" 
@@ -48,6 +45,52 @@
             <Frame CornerRadius="10" Padding="10" BackgroundColor="White">
                 <Entry x:Name="LocationEntry" Placeholder="Enter Location" 
                        FontSize="16" TextColor="Black"/>
+            </Frame>
+
+            <!-- Company Details Section -->
+            <Label Text="Company Details" 
+                   FontSize="22" 
+                   FontAttributes="Bold" 
+                   TextColor="Black"
+                   HorizontalOptions="Start"
+                   Margin="0,10,0,5"/>
+
+            <!-- Company Name Entry -->
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="White">
+                <Entry x:Name="CompanyNameEntry" Placeholder="Enter Company Name" 
+                       FontSize="16" TextColor="Black"/>
+            </Frame>
+
+            <!-- Company Website Entry -->
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="White">
+                <Entry x:Name="CompanyWebsiteEntry" Placeholder="Enter Company Website" 
+                       FontSize="16" TextColor="Black"/>
+            </Frame>
+
+            <!-- Contact Information Section -->
+            <Label Text="Contact Information" 
+                   FontSize="22" 
+                   FontAttributes="Bold" 
+                   TextColor="Black"
+                   HorizontalOptions="Start"
+                   Margin="0,10,0,5"/>
+
+            <!-- Contact Name Entry -->
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="White">
+                <Entry x:Name="ContactNameEntry" Placeholder="Enter Contact Name" 
+                       FontSize="16" TextColor="Black"/>
+            </Frame>
+
+            <!-- Contact Email Entry -->
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="White">
+                <Entry x:Name="ContactEmailEntry" Placeholder="Enter Contact Email" 
+                       FontSize="16" Keyboard="Email" TextColor="Black"/>
+            </Frame>
+
+            <!-- Contact Phone Entry -->
+            <Frame CornerRadius="10" Padding="10" BackgroundColor="White">
+                <Entry x:Name="ContactPhoneEntry" Placeholder="Enter Contact Phone" 
+                       FontSize="16" Keyboard="Telephone" TextColor="Black"/>
             </Frame>
 
             <!-- Post Job Button -->
