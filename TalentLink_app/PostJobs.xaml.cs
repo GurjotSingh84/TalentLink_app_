@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Maui.Controls;
 using TalentLink_app.Models;
 using TalentLink_app.Services;
@@ -26,13 +26,24 @@ namespace TalentLink_app
 
             var job = new Job
             {
-                JobId = Guid.NewGuid().ToString(),
-                RecruiterId = recruiterId,
+                JobId = Guid.NewGuid().ToString(),  // ✅ Generate unique Job ID
+                RecruiterId = recruiterId,  // ✅ Store Recruiter ID
                 JobTitle = JobTitleEntry.Text,
                 JobDescription = JobDescriptionEditor.Text,
                 PayRate = PayRateEntry.Text,
-                Location = LocationEntry.Text
+                Location = LocationEntry.Text,
+                PostedAt = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"),  // ✅ Store timestamp
+
+                // ✅ Add Company Details
+                CompanyName = CompanyNameEntry.Text,
+                CompanyWebsite = CompanyWebsiteEntry.Text,
+
+                // ✅ Add Contact Information
+                ContactName = ContactNameEntry.Text,
+                ContactEmail = ContactEmailEntry.Text,
+                ContactPhone = ContactPhoneEntry.Text
             };
+
 
             bool success = await _jobService.PostJob(job);
 
