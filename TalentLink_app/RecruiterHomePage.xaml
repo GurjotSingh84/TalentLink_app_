@@ -5,13 +5,21 @@
              BackgroundColor="White">
 
     <Grid>
-        <Image Source="https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-recruitment-looking-for-talent-recruitment-season-banner-image_171916.jpg" Aspect="AspectFill" Opacity="0.3"/>
+        <!-- Background Image -->
+        <Image Source="https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-recruitment-looking-for-talent-recruitment-season-banner-image_171916.jpg"
+               Aspect="AspectFill" 
+               Opacity="0.3"/>
+
         <StackLayout Padding="20" VerticalOptions="Start">
+            <!-- App Title -->
             <Label Text="TalentLink App"
                    FontSize="30"
-                   TextColor="#3498db"  FontAttributes="Bold"
+                   TextColor="#3498db"
+                   FontAttributes="Bold"
                    HorizontalOptions="Center"
                    Margin="0,0,0,20"/>
+
+            <!-- Page Title -->
             <Label Text="Recruiter Dashboard"
                    FontSize="24"
                    TextColor="Black"
@@ -19,13 +27,18 @@
                    HorizontalOptions="Center"
                    Margin="0,0,0,20"/>
 
-            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" 
-                  HorizontalOptions="Center"  RowSpacing="20" ColumnSpacing="20">
+            <!-- Button Grid -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*"
+                  HorizontalOptions="Center" RowSpacing="20" ColumnSpacing="20">
+
+                <!-- Row 1 -->
                 <Button Text="Post a Job"
                         BackgroundColor="White"
                         TextColor="Black"
-                        BorderColor="#3498db"  BorderWidth="2"
-                        CornerRadius="10"  FontSize="16"
+                        BorderColor="#3498db"
+                        BorderWidth="2"
+                        CornerRadius="10"
+                        FontSize="16"
                         Grid.Row="0" Grid.Column="0"
                         Clicked="GoToPostJob"/>
 
@@ -39,6 +52,7 @@
                         Grid.Row="0" Grid.Column="1"
                         Clicked="GoToPostedJobs"/>
 
+                <!-- Row 2 -->
                 <Button Text="View Candidates"
                         BackgroundColor="White"
                         TextColor="Black"
@@ -49,7 +63,10 @@
                         Grid.Row="1" Grid.Column="0"
                         Clicked="GoToCandidates"/>
 
-                <Button Text="Messaging"
+        
+
+                <!-- Row 3 (Added Search Candidates Button) -->
+                <Button Text="Search Candidates"
                         BackgroundColor="White"
                         TextColor="Black"
                         BorderColor="#3498db"
@@ -57,31 +74,15 @@
                         CornerRadius="10"
                         FontSize="16"
                         Grid.Row="1" Grid.Column="1"
-                        Clicked="GoToMessaging"/>
+                         
+                        Clicked="GoToSearchCandidates"/>
 
             </Grid>
 
-            <Button Text="Notifications"
-                    BackgroundColor="White"
-                    TextColor="Black"
-                    BorderColor="#3498db"
-                    BorderWidth="2"
-                    CornerRadius="10"
-                    FontSize="16"
-                    Margin="0,20,0,0"  HorizontalOptions="Center"
-                    Clicked="GoToNotifications"/>
+            <!-- Profile and Settings -->
+           
 
-            <Button Text="Profile and Settings"
-                    BackgroundColor="White"
-                    TextColor="Black"
-                    BorderColor="#3498db"
-                    BorderWidth="2"
-                    CornerRadius="10"
-                    FontSize="16"
-                    Margin="0,20,0,0"
-                    HorizontalOptions="Center"
-                    Clicked="GoToProfile"/>
-
+            <!-- Logout Button -->
             <Button Text="Logout"
                     BackgroundColor="Black"
                     TextColor="White"
@@ -90,7 +91,6 @@
                     Margin="0,20,0,0"
                     HorizontalOptions="Center"
                     Clicked="Logout"/>
-
         </StackLayout>
     </Grid>
 
