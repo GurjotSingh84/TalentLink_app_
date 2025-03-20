@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using Microsoft.Maui.Controls;
 using TalentLink_app.Models;
@@ -9,10 +9,9 @@ namespace TalentLink_app
     public partial class ViewCandidatesPage : ContentPage
     {
         private readonly FirebaseJobService _jobService = new FirebaseJobService();
-        public ObservableCollection<Candidate> Candidates { get; set; } = new ObservableCollection<Candidate>();
+        public ObservableCollection<JobApplication> Applications { get; set; } = new ObservableCollection<JobApplication>();
         private string _jobId;
 
-        // ✅ Constructor that accepts a Job
         public ViewCandidatesPage(Job selectedJob)
         {
             InitializeComponent();
@@ -21,44 +20,97 @@ namespace TalentLink_app
             if (selectedJob != null)
             {
                 _jobId = selectedJob.JobId;
-                Title = $"Candidates for {selectedJob.JobTitle}";
-                LoadCandidatesForJob();
+                Title = $"Applicants for {selectedJob.JobTitle}";
+                LoadApplicationsForJob();
             }
         }
 
-        private async void LoadCandidatesForJob()
+        private async void LoadApplicationsForJob()
         {
             try
             {
-                Console.WriteLine($"🔍 Fetching candidates for Job ID: {_jobId}");
+                Console.WriteLine($"🔍 Fetching applications for Job ID: {_jobId}");
 
-                var candidatesList = await _jobService.GetCandidatesForJob(_jobId);
+                var applicationsList = await _jobService.GetApplicationsForJob(_jobId);
 
-                Console.WriteLine($"✅ Candidates Fetched: {candidatesList.Count}");
+                Console.WriteLine($"✅ Applications Fetched: {applicationsList.Count}");
 
-                Candidates.Clear();
-                foreach (var candidate in candidatesList)
+                Applications.Clear();
+                foreach (var application in applicationsList)
                 {
-                    Console.WriteLine($"🆕 Candidate: {candidate.Name} - {candidate.Email}");
-                    Candidates.Add(candidate);
+                    Console.WriteLine($"🆕 Application: {application.Name} - {application.Email}");
+                    Applications.Add(application);
                 }
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"Failed to load candidates: {ex.Message}", "OK");
+                await DisplayAlert("Error", $"Failed to load applications: {ex.Message}", "OK");
             }
         }
 
-        private async void OnCandidateSelected(object sender, SelectionChangedEventArgs e)
+        private async void OnResumeTapped(object sender, EventArgs e)
         {
-            if (e.CurrentSelection.Count == 0) return;
-
-            var selectedCandidate = e.CurrentSelection[0] as Candidate;
-            if (selectedCandidate == null) return;
-
-            await Navigation.PushAsync(new CandidateDetailsPage(selectedCandidate));
-            ((CollectionView)sender).SelectedItem = null;
+            if (sender is Label label && label.BindingContext is JobApplication application)
+            {
+                if (!string.IsNullOrEmpty(application.ResumeUrl))
+                {
+                    await Launcher.OpenAsync(new Uri(application.ResumeUrl));
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Resume URL is not available.", "OK");
+                }
+            }
         }
+
+        private async void OnApproveClicked(object sender, EventArgs e)
+        {
+            if (sender is Button button && button.CommandParameter is string applicationId)
+            {
+                bool confirm = await DisplayAlert("Approve", "Are you sure you want to approve this candidate?", "Yes", "No");
+                if (confirm)
+                {
+                    try
+                    {
+                        await _jobService.UpdateApplicationStatus(applicationId, "Approved");
+                        await DisplayAlert("Success", "Candidate approved successfully!", "OK");
+                        LoadApplicationsForJob(); // Refresh the list
+                    }
+                    catch (Exception ex)
+                    {
+                        await DisplayAlert("Error", $"Failed to approve candidate: {ex.Message}", "OK");
+                    }
+                }
+            }
+        }
+
+        private async void OnRejectClicked(object sender, EventArgs e)
+        {
+            if (sender is Button button && button.CommandParameter is string applicationId)
+            {
+                bool confirm = await DisplayAlert("Reject", "Are you sure you want to reject this candidate?", "Yes", "No");
+                if (confirm)
+                {
+                    try
+                    {
+                        await _jobService.UpdateApplicationStatus(applicationId, "Rejected");
+                        await DisplayAlert("Success", "Candidate rejected successfully!", "OK");
+                        LoadApplicationsForJob(); // Refresh the list
+                    }
+                    catch (Exception ex)
+                    {
+                        await DisplayAlert("Error", $"Failed to reject candidate: {ex.Message}", "OK");
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
     }
 }
 
