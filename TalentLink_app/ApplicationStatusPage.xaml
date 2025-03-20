@@ -2,11 +2,55 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TalentLink_app.ApplicationStatusPage"
-             Title="ApplicationStatusPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Application Status"
+             BackgroundColor="#F5F5F5">
+
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="30" Spacing="20">
+
+            <!-- Page Header -->
+            <Label Text="Application Status"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,5"/>
+
+            <!-- Status Card -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="15"
+                   Padding="20"
+                   HasShadow="True">
+                <Label x:Name="statusLabel"
+                       Text="Loading status..."
+                       FontSize="22"
+                       TextColor="Black"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Frame>
+
+            <!-- Refresh Button -->
+            <Button Text="🔄 Refresh Status"
+                    Clicked="OnRefreshClicked"
+                    BackgroundColor="#007AFF"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="15"
+                    HeightRequest="50"
+                    HorizontalOptions="Fill"
+                    Padding="12"/>
+
+            <!-- Back Button -->
+            <Button Text="⬅ Back"
+                    Clicked="OnBackButtonClicked"
+                    BackgroundColor="#555555"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="15"
+                    HeightRequest="50"
+                    HorizontalOptions="Fill"
+                    Padding="12"/>
+
+        </VerticalStackLayout>
+    </ContentPage.Content>
 </ContentPage>
