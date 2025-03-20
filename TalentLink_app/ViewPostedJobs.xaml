@@ -49,11 +49,7 @@
 
                             <!-- Job Details -->
                             <VerticalStackLayout Padding="5">
-                                <HorizontalStackLayout>
-                                    <Label Text="👤 Recruiter: " FontSize="14" FontAttributes="Bold" 
-                                           TextColor="Gray"/>
-                                    <Label Text="{Binding RecruiterId}" FontSize="14" TextColor="#007AFF"/>
-                                </HorizontalStackLayout>
+                              
 
                                 <HorizontalStackLayout>
                                     <Label Text="📌 Job ID: " FontSize="14" FontAttributes="Bold" TextColor="Gray"/>
