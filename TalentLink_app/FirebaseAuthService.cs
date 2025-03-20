@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Firebase.Auth;
 using Firebase.Database;
@@ -217,6 +217,12 @@ namespace TalentLink_app.Services
                 Console.WriteLine($"❌ Error fetching user details: {ex.Message}");
                 return (null, null);
             }
+        }
+      
+
+        public async Task<string> GetSavedToken()
+        {
+            return await SecureStorage.GetAsync("firebase_token");
         }
 
 
