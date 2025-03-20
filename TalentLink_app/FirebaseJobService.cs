@@ -1,10 +1,17 @@
-﻿using Firebase.Auth;
+
+
+
+using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
 
 using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using TalentLink_app.Models;
 using TalentLink_app.Services;
@@ -38,9 +45,22 @@ namespace TalentLink_app.Services
                     JobTitle = item.Object.JobTitle,
                     JobDescription = item.Object.JobDescription,
                     PayRate = item.Object.PayRate,
-                    Location = item.Object.Location
+                    Location = item.Object.Location,
+                    RecruiterId = item.Object.RecruiterId,
+                    CandidateId = item.Object.CandidateId,
+                    PostedAt = item.Object.PostedAt,
+
+                    // ✅ Fetch Company Details
+                    CompanyName = item.Object.CompanyName,
+                    CompanyWebsite = item.Object.CompanyWebsite,
+
+                    // ✅ Fetch Contact Information
+                    ContactName = item.Object.ContactName,
+                    ContactEmail = item.Object.ContactEmail,
+                    ContactPhone = item.Object.ContactPhone
                 }).ToList();
         }
+
 
         public async Task<bool> EditJob(Job job)
         {
@@ -73,7 +93,7 @@ namespace TalentLink_app.Services
         public async Task<List<Job>> GetAllJobs()
         {
             return (await _firebase
-                .Child("Jobs")  // ✅ Correcting the case
+                .Child("Jobs")  // ✅ Fetching Jobs from Firebase
                 .OnceAsync<Job>())
                 .Select(item => new Job
                 {
@@ -81,9 +101,22 @@ namespace TalentLink_app.Services
                     JobTitle = item.Object.JobTitle,
                     JobDescription = item.Object.JobDescription,
                     Location = item.Object.Location,
-                    PayRate = item.Object.PayRate
+                    PayRate = item.Object.PayRate,
+                    RecruiterId = item.Object.RecruiterId,
+                    CandidateId = item.Object.CandidateId,
+                    PostedAt = item.Object.PostedAt,
+
+                    // ✅ Fetch Company Details
+                    CompanyName = item.Object.CompanyName,
+                    CompanyWebsite = item.Object.CompanyWebsite,
+
+                    // ✅ Fetch Contact Information
+                    ContactName = item.Object.ContactName,
+                    ContactEmail = item.Object.ContactEmail,
+                    ContactPhone = item.Object.ContactPhone
                 }).ToList();
         }
+
 
         public async Task<bool> ApplyForJob(JobApplication jobApplication)
         {
@@ -103,7 +136,7 @@ namespace TalentLink_app.Services
                     {
                         JobId = jobApplication.JobId,
                         CandidateId = jobApplication.CandidateId,
-                       
+
                     });
 
                 return true;
@@ -185,7 +218,9 @@ namespace TalentLink_app.Services
 
 
         public async Task<bool> PostJob(string recruiterId, string jobTitle, string jobDescription,
-                                      string jobLocation, string salary)
+                                      string jobLocation, string salary, string companyName,
+                                      string companyWebsite, string contactName, string contactEmail,
+                                      string contactPhone)
         {
             try
             {
@@ -199,7 +234,16 @@ namespace TalentLink_app.Services
                     JobDescription = jobDescription,
                     Location = jobLocation,
                     PayRate = salary,
-                    PostedAt = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss")
+                    PostedAt = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"),
+
+                    // ✅ Add Company Details
+                    CompanyName = companyName,
+                    CompanyWebsite = companyWebsite,
+
+                    // ✅ Add Contact Information
+                    ContactName = contactName,
+                    ContactEmail = contactEmail,
+                    ContactPhone = contactPhone
                 };
 
                 await _firebase
@@ -213,13 +257,8 @@ namespace TalentLink_app.Services
             {
                 throw new Exception("Job posting failed: " + ex.Message);
             }
-
-
-
-
-
-
         }
+
         // ✅ Save a job for a candidate
         public async Task<bool> SaveJob(string candidateId, string jobId)
         {
@@ -298,7 +337,16 @@ namespace TalentLink_app.Services
                         JobDescription = j.Object.JobDescription,
                         Location = j.Object.Location,
                         PayRate = j.Object.PayRate,
-                        PostedAt = j.Object.PostedAt
+                        PostedAt = j.Object.PostedAt,
+
+                        // ✅ Add Company Details
+                        CompanyName = j.Object.CompanyName,
+                        CompanyWebsite = j.Object.CompanyWebsite,
+
+                        // ✅ Add Contact Information
+                        ContactName = j.Object.ContactName,
+                        ContactEmail = j.Object.ContactEmail,
+                        ContactPhone = j.Object.ContactPhone
                     }).ToList();
             }
             catch (Exception ex)
@@ -307,7 +355,8 @@ namespace TalentLink_app.Services
                 return new List<Job>();
             }
         }
-       
+
+
         public async Task<Job> GetJobById(string jobId)
         {
             try
@@ -384,15 +433,90 @@ namespace TalentLink_app.Services
 
             return candidatesList;
         }
+        public async Task<List<JobApplication>> GetApplicationsForJob(string jobId)
+        {
+            var applications = await _firebase
+                .Child("JobApplications")
+                .OnceAsync<JobApplication>();
 
+            return applications
+                .Where(a => a.Object.JobId == jobId)
+                .Select(a => a.Object)
+                .ToList();
+        }
 
+        public async Task UpdateApplicationStatus(string applicationId, string status)
+        {
+            try
+            {
+                var applicationRef = _firebase.Child("JobApplications").Child(applicationId);
+                await applicationRef.Child("Status").PutAsync(status);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"🔥 Error updating application status: {ex.Message}");
+                throw;
+            }
+        }
 
+        public async Task<List<CandidateProfile>> GetAllCandidates()
+        {
+            var candidates = await _firebase
+                .Child("Candidates")
+                .OnceAsync<CandidateProfile>();
 
+            return candidates.Select(c => c.Object).ToList();
+        }
 
+        public async Task<JobApplication> GetApplicationById(string applicationId)
+        {
+            try
+            {
+                var application = await _firebase
+                    .Child("jobApplications")
+                    .Child(applicationId)
+                    .OnceSingleAsync<JobApplication>();
 
+                return application;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching application: {ex.Message}");
+                return null;
+            }
+        }
+        // Subscribe to application status updates (REAL-TIME)
+        public IObservable<JobApplication> SubscribeToApplicationStatus(string applicationId)
+        {
+            return _firebase
+                .Child("Applications")
+                .Child(applicationId)
+                .AsObservable<JobApplication>()
+                .Where(a => a.Object != null)
+                .Select(a => a.Object);
+        }
 
+        public async Task<string> GetApplicationStatus(string candidateId, string jobId)
+        {
+            var jobApplications = await _firebase
+                .Child("JobApplications")
+                .Child(jobId)
+                .Child(candidateId)
+                .OnceAsync<ApplicationStatus>();
+
+            // Return the application status (e.g., "Pending", "Approved", "Rejected")
+            return jobApplications?.FirstOrDefault()?.Object?.Status;
+        }
 
     }
+
+
+    public class ApplicationStatus
+    {
+        public string Status { get; set; }  // "Pending", "Approved", "Rejected"
+    }
+
+
 }
 
 
