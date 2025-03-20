@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -143,7 +143,7 @@ namespace TalentLink_app
                 ExpectedPay = ExpectedPayEntry.Text,
                 Availability = AvailabilityEntry.Text,
                 Qualifications = QualificationsEntry.Text,
-                Status = "Pending"
+               
             };
 
             var candidateData = new Candidate
@@ -164,7 +164,7 @@ namespace TalentLink_app
             try
             {
                 await _firebase.Child("JobApplications").Child(applicationId).PutAsync(applicationData);
-                await _firebase.Child("Candidates").Child(_candidateId).PutAsync(candidateData); // ✅ Store candidate data
+               // ✅ Store candidate data
 
                 await DisplayAlert("Success", "Your application has been submitted!", "OK");
                 await Navigation.PopAsync();
