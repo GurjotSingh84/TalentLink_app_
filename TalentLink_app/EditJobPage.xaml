@@ -52,6 +52,52 @@
                         <Entry x:Name="LocationEntry" Placeholder="Location" TextColor="Black" FontSize="16"/>
                     </HorizontalStackLayout>
 
+                    <!-- Company Details Section -->
+                    <Label Text="Company Details" 
+                           FontSize="22" 
+                           FontAttributes="Bold" 
+                           TextColor="Black"
+                           HorizontalOptions="Start"
+                           Margin="0,10,0,5"/>
+
+                    <!-- Company Name -->
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="C:\Users\harpr\source\repos\TalentLink_app (2)\TalentLink_app\images\company-icon.png" HeightRequest="24" WidthRequest="24"/>
+                        <Entry x:Name="CompanyNameEntry" Placeholder="Company Name" TextColor="Black" FontSize="16"/>
+                    </HorizontalStackLayout>
+
+                    <!-- Company Website -->
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="C:\Users\harpr\source\repos\TalentLink_app (2)\TalentLink_app\images\website-icon.png" HeightRequest="24" WidthRequest="24"/>
+                        <Entry x:Name="CompanyWebsiteEntry" Placeholder="Company Website" TextColor="Black" FontSize="16"/>
+                    </HorizontalStackLayout>
+
+                    <!-- Contact Information Section -->
+                    <Label Text="Contact Information" 
+                           FontSize="22" 
+                           FontAttributes="Bold" 
+                           TextColor="Black"
+                           HorizontalOptions="Start"
+                           Margin="0,10,0,5"/>
+
+                    <!-- Contact Name -->
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="C:\Users\harpr\source\repos\TalentLink_app (2)\TalentLink_app\images\contact-icon.png" HeightRequest="24" WidthRequest="24"/>
+                        <Entry x:Name="ContactNameEntry" Placeholder="Contact Name" TextColor="Black" FontSize="16"/>
+                    </HorizontalStackLayout>
+
+                    <!-- Contact Email -->
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="C:\Users\harpr\source\repos\TalentLink_app (2)\TalentLink_app\images\email-icon.png" HeightRequest="24" WidthRequest="24"/>
+                        <Entry x:Name="ContactEmailEntry" Placeholder="Contact Email" TextColor="Black" FontSize="16" Keyboard="Email"/>
+                    </HorizontalStackLayout>
+
+                    <!-- Contact Phone -->
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="C:\Users\harpr\source\repos\TalentLink_app (2)\TalentLink_app\images\phone-icon.png" HeightRequest="24" WidthRequest="24"/>
+                        <Entry x:Name="ContactPhoneEntry" Placeholder="Contact Phone" TextColor="Black" FontSize="16" Keyboard="Telephone"/>
+                    </HorizontalStackLayout>
+
                     <!-- Update Button -->
                     <Button Text="Update Job" 
                             Clicked="OnUpdateClicked"
@@ -59,7 +105,8 @@
                             TextColor="White"
                             FontSize="16"
                             CornerRadius="25"
-                            HeightRequest="50"/>
+                            HeightRequest="50"
+                            Margin="0,10,0,10"/>
                 </VerticalStackLayout>
 
             </Frame>
