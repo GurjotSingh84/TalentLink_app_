@@ -2,9 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TalentLink_app.ViewCandidatesPage"
-             Title="Candidates for Job">
+             Title="Applicants">
 
-    <!-- Background Gradient (Same as Previous Pages) -->
     <ContentPage.Background>
         <LinearGradientBrush>
             <GradientStop Color="#D8B4FE" Offset="0.0"/>
@@ -16,67 +15,68 @@
         <StackLayout Padding="20" Spacing="15">
 
             <!-- Page Title -->
-            <Label Text="Candidates Applied" 
+            <Label Text="Applicants" 
                    FontSize="28" 
                    FontAttributes="Bold" 
                    TextColor="#1E293B"
                    HorizontalOptions="Center"/>
 
-            <!-- Candidates List -->
-            <CollectionView ItemsSource="{Binding Candidates}" 
-                            SelectionMode="Single" 
-                            SelectionChanged="OnCandidateSelected">
-
+            <!-- Applications List -->
+            <CollectionView ItemsSource="{Binding Applications}" SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <!-- Candidate Card -->
-                        <Frame Padding="15" 
-                               Margin="10,5" 
-                               BackgroundColor="White"
-                               BorderColor="#E0E0E0"
-                               CornerRadius="15"
-                               HasShadow="True">
+                        <Frame Padding="15" Margin="10,5" BackgroundColor="White"
+                   BorderColor="#E0E0E0" CornerRadius="15" HasShadow="True">
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold" TextColor="#1E293B"/>
+                                <Label Text="{Binding Email}" FontSize="14" TextColor="#6B7280"/>
+                                <Label Text="{Binding Phone}" FontSize="14" TextColor="#6B7280"/>
+                                <Label Text="{Binding Experience, StringFormat='Experience: {0} years'}" FontSize="14" TextColor="#374151"/>
+                                <Label Text="{Binding ExpectedPay, StringFormat='Expected Pay: {0}'}" FontSize="14" TextColor="#374151"/>
+                                <Label Text="{Binding Availability, StringFormat='Availability: {0}'}" FontSize="14" TextColor="#374151"/>
+                                <Label Text="{Binding Qualifications, StringFormat='Qualifications: {0}'}" FontSize="14" TextColor="#374151"/>
+                                <Label Text="{Binding ApplicationId, StringFormat='Application ID: {0}'}" FontSize="12" TextColor="#6B7280"/>
+                                <Label Text="{Binding CandidateId, StringFormat='Candidate ID: {0}'}" FontSize="12" TextColor="#6B7280"/>
+                                <Label Text="{Binding AppliedDate, StringFormat='Applied on: {0:dd-MM-yyyy}'}" FontSize="12" TextColor="#6B7280"/>
 
-                            <Grid ColumnDefinitions="60, *, Auto" RowDefinitions="Auto, Auto">
+                                <!-- View Resume -->
+                                <Label Text="View Resume"
+                           TextColor="Blue"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Start">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnResumeTapped"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
 
-                                <!-- Profile Icon -->
-                                <Image Source="profile_placeholder.png" 
-                                       WidthRequest="50"
-                                       HeightRequest="50"
-                                       Aspect="AspectFill"
-                                       Margin="0,0,10,0"
-                                       Grid.Column="0"
-                                       Grid.RowSpan="2"
-                                       VerticalOptions="Center"/>
+                                <!-- Approve and Reject Buttons -->
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
+                                    <Button Text="Approve" 
+                                BackgroundColor="Green" 
+                                TextColor="White"
+                                Clicked="OnApproveClicked"
+                                CommandParameter="{Binding ApplicationId}" />
 
-                                <!-- Candidate Name -->
-                                <Label Text="{Binding Name}" 
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       TextColor="#1E293B"
-                                       Grid.Column="1"
-                                       Grid.Row="0"/>
+                                    <Button Text="Reject" 
+                                BackgroundColor="Red" 
+                                TextColor="White"
+                                Clicked="OnRejectClicked"
+                                CommandParameter="{Binding ApplicationId}" />
+                                </StackLayout>
 
-                                <!-- Candidate Email -->
-                                <Label Text="{Binding Email}" 
-                                       FontSize="14"
-                                       TextColor="#6B7280"
-                                       Grid.Column="1"
-                                       Grid.Row="1"/>
-
-                                
-                            </Grid>
+                            </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <!-- No Candidates Message -->
-            <Label Text="No candidates have applied yet." 
+
+            <!-- No Applications Message -->
+            <Label Text="No applications received yet." 
                    FontSize="16" 
                    TextColor="#6B7280" 
                    HorizontalOptions="Center" 
-                   IsVisible="{Binding Candidates.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
+                   IsVisible="{Binding Applications.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
         </StackLayout>
     </ScrollView>
 
